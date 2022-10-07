@@ -4,19 +4,96 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    h1 {
-      text-align: center;
-      color: blue;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+   crossorigin="anonymous">
+   <link rel="stylesheet" href="src/style.css" />
+    <link rel="index" href="index.js"/>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Weather</title>
 </head>
 <body>
-  <h1>
-    Hello Git
-    i do not 
-    Mariia
-  </h1>
-</body>
-</html>
+<div class="header">
+      <div class="container">
+        <div class="weather-app"
+        
+          <div class="row">
+                  <div class="col">
+              <div>
+                  <form class="search-form" id="search-form">
+                      <div class="row">
+                        <div class="col-6">
+                          <input type="search" placeholder="Type a city.." autofocus="on" autocomplete="off" id="city-input" class="form-control shadow-sm">
+                        </div>
+                        <div class="col-3">
+                          <input type="submit" value="Search" class="form-control btn btn-primary shadow-sm w-100">
+                        </div>
+                        <div class="col-3">
+                          <button class="btn btn-success w-100" id="current-location-button">
+                            Current
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                    
+                    <h2>Paris</h2>
+                    <span id="time">Satuday, 21:00</span>
+                    <div class="type">Clear</div>
+                  </div>
+                  <div class="col-5 weather-description">
+                    <ul>
+                  <li>Precipitation:<span id="Precipitation">1</span>%</li> 
+                 <li>Wind: <span id="Wind">3</span>km/h</li> 
+                  <li>Humidity: <span id="Humidity">67</span>%</li>
+                    </ul>  
+                </div>
+                </div>
+                <h1> <img src="images/sun.png" alt="sunny" width="100px"> 
+                  <span id="todayTemp">20°</span> 
+                  <a href="#" id="celsius" class="Celsus">C</a>            |
+                  
+              <a href="#" id="fahrenheit" class="Fahrenheit">F</a></h1>
+                <div class="weather">
+                <div class="row text-center">
+                  <div class="col">
+                    Sunday
+                  </br>
+              <img class="emoji"src="images/rain.png" alt="cloud">
+                </br>
+                29°C  19°C
+              </div>
+                  <div class="col">
+                  Monday
+                  </br>
+              <img class="emoji"src="images/cloud.png" alt="cloud">
+                </br>
+                29°C  16°C
+                </div>
+                 <div class="col">
+                 Tuesday
+                  </br>
+              <img class="emoji"src="images/rain.png" alt="cloud">
+                </br>
+                29°C  16°C
+                </div>
+                 <div class="col">
+                 Wednesday
+                  </br>
+              <img class="emoji"src="images/sun.png" alt="cloud">
+                </br>
+                29°C  16°C
+                 </div>
+                  <div class="col">
+                 Thuesday
+                  </br>
+              <img class="emoji"src="images/cloud.png" alt="cloud">
+                </br>
+                29°C  16°C
+                  </div>
+                </div>
+              <div class="footer"> <small>Coded by Mariia Karablinska</small> </div>
+             
+            
+            <script src="index.js"></script>
+            </body>
+            </html>
