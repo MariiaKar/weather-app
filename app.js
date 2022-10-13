@@ -49,7 +49,9 @@ function showTemperature(response) {
     response.data.main.temp
   );
   console.log(response);
+  console.log(response.data);
 }
+console.log(response.data.main.temp);
 
 function search(city) {
   let apiKey = "f09d3949047ab6c9e3bcaf79cf61f619";
