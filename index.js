@@ -17,19 +17,24 @@ let days = [
 let day = days[now.getDay()];
 currentTime.innerHTML = `${day} ${hour}:${minutes}`;
 
-function changeToFahrenheit() {
+function changeToFahrenheit(event) {
+  event.preventDefault();
   let todayTemp = document.querySelector("#todayTemp");
-  todayTemp.innerHTML = `68°`;
+  todayTemp.innerHTML = Math.round(celsiusTemperature * 1.8 + 32);
 }
 let fahrenheit = document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click", changeToFahrenheit);
 
-function changeToCelsus() {
+function changeToCelsus(event) {
+  event.preventDefault();
   let todayTemp = document.querySelector("#todayTemp");
-  todayTemp.innerHTML = `20°`;
-  let celsius = document.querySelector("#celsius");
-  celsius.addEventListener("click", changeToCelsus);
+  todayTemp.innerHTML = Math.round(celsiusTemperature);
 }
+let celsius = document.querySelector("#celsius");
+celsius.addEventListener("click", changeToCelsus);
+let celsiusTemperature = null;
+fahrenheit.classList.remove("active");
+celsius.classList.add("active");
 
 function changeCity(event) {
   event.preventDefault();
@@ -48,17 +53,22 @@ function showTemperature(response) {
   document.querySelector("#todayTemp").innerHTML = Math.round(
     response.data.main.temp
   );
-  console.log(response);
-  console.log(response.data);
+  document.querySelector("#description").innerHTML =
+    response.data.weather[0].description;
+  document.querySelector("#Humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#Wind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
+  celsiusLink = response.data.main.temp;
+
+  getForecast(response.data.coord);
 }
-console.log(response.data.main.temp);
 
 function search(city) {
   let apiKey = "f09d3949047ab6c9e3bcaf79cf61f619";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showTemperature);
 }
-
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#city-input").value;
