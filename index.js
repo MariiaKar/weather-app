@@ -20,7 +20,7 @@ currentTime.innerHTML = `${day} ${hour}:${minutes}`;
 function changeToFahrenheit(event) {
   event.preventDefault();
   let todayTemp = document.querySelector("#todayTemp");
-  todayTemp.innerHTML = Math.round(celsiusTemperature * 1.8 + 32);
+  todayTemp.innerHTML = Math.round(celsius * 1.8 + 32);
 }
 let fahrenheit = document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click", changeToFahrenheit);
@@ -28,7 +28,7 @@ fahrenheit.addEventListener("click", changeToFahrenheit);
 function changeToCelsus(event) {
   event.preventDefault();
   let todayTemp = document.querySelector("#todayTemp");
-  todayTemp.innerHTML = Math.round(celsiusTemperature);
+  todayTemp.innerHTML = Math.round(celsius);
 }
 let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", changeToCelsus);
@@ -59,8 +59,14 @@ function showTemperature(response) {
   document.querySelector("#Wind").innerHTML = Math.round(
     response.data.wind.speed
   );
-  celsiusLink = response.data.main.temp;
+  let iconElement = document.querySelector("#icon");
 
+  celsius = response.data.main.temp;
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
   getForecast(response.data.coord);
 }
 
@@ -91,3 +97,5 @@ function searchLocation(position) {
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+search("Paris");
