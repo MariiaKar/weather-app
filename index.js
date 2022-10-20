@@ -30,7 +30,7 @@ let forecastElement = document.querySelector("#forecast");
 let forecastHTML =`<div class="row">`;
  let days = ["Sunday", "Monday", "Tuesday", "Wednsday", "Thuesday"];
  forecast.forEach(function (forecastDay,index) {
-  if (index<5) {
+  if (index < 5) {
 forecastHTML =
   forecastHTML +
   `
@@ -40,7 +40,7 @@ forecastHTML =
 <img class="emoji"src="http://openweathermap.org/img/wn/${
     forecastDay.weather[0].icon
   }2x.png" alt="">
-</br>0
+</br>
 <span class="weather-forecast-temperature-max">${Math.round(
     forecastDay.temp.max
   )}°C </span> <span class="weather-forecast-temperature-min">${Math.round(forecastDay.temp.min)}°C</span>
