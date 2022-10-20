@@ -17,6 +17,52 @@ let days = [
 let day = days[now.getDay()];
 currentTime.innerHTML = `${day} ${hour}:${minutes}`;
 
+function formatDay(timestamp) {
+let date = new Date(timestamp *1000);
+let day = date.getDay();
+let days = ["Sunday", "Monday", "Tuesday", "Wednsday", "Thuesday"];
+return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+let forecastElement = document.querySelector("#forecast");
+let forecastHTML =`<div class="row">`;
+ let days = ["Sunday", "Monday", "Tuesday", "Wednsday", "Thuesday"];
+ forecast.forEach(function (forecastDay,index) {
+  if (index<5) {
+forecastHTML =
+  forecastHTML +
+  `
+<div class="col">
+<div class="weather-forecast-date"><strong>${formatDay(forecastDay.dt)}</strong>
+</br>
+<img class="emoji"src="http://openweathermap.org/img/wn/${
+    forecastDay.weather[0].icon
+  }2x.png" alt="">
+</br>0
+<span class="weather-forecast-temperature-max">${Math.round(
+    forecastDay.temp.max
+  )}°C </span> <span class="weather-forecast-temperature-min">${Math.round(forecastDay.temp.min)}°C</span>
+</div>
+      
+</div>
+                
+`;
+  }
+ });
+forecastHTML = forecastHTML + `<div>`;
+forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates){
+console.log(coordinates);
+let apiKey = "f09d3949047ab6c9e3bcaf79cf61f619";
+let apiUrl =
+  `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude={part}&appid={apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function changeToFahrenheit(event) {
   event.preventDefault();
   let todayTemp = document.querySelector("#todayTemp");
@@ -68,6 +114,7 @@ function showTemperature(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
   getForecast(response.data.coord);
+  console.log(response.data);
 }
 
 function search(city) {
