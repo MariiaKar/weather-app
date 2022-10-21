@@ -6,13 +6,13 @@ if (minutes < 10) {
   minutes = `0${minutes}`;
 }
 let days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri",
+  "Sat",
+  "Sun",
 ];
 let day = days[now.getDay()];
 currentTime.innerHTML = `${day} ${hour}:${minutes}`;
@@ -20,15 +20,7 @@ currentTime.innerHTML = `${day} ${hour}:${minutes}`;
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
-  let days = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   return days[day];
 }
 
@@ -36,7 +28,7 @@ function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   forecast.forEach(function (forecastDay, index) {
     if (index < 7) {
       forecastHTML =
@@ -51,9 +43,9 @@ function displayForecast(response) {
 </br>
 <span class="weather-forecast-temperature-max">${Math.round(
           forecastDay.temp.max
-        )}°C </span> <span class="weather-forecast-temperature-min">${Math.round(
+        )}° </span> <span class="weather-forecast-temperature-min">${Math.round(
           forecastDay.temp.min
-        )}°C</span>
+        )}°</span>
 </div>
 
 </div>
